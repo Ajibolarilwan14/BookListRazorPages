@@ -28,6 +28,9 @@
                         <label asp-for="Books.FirstOrDefault().Author"></label>
                     </th>
                     <th>
+                        <label asp-for="Books.FirstOrDefault().ISBN"></label>
+                    </th>
+                    <th>
                         <label>Actions</label>
                     </th>
                     <th>
@@ -36,20 +39,33 @@
                 </tr>
                 @foreach(var item in Model.Books)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(m => item.Name)
-                        </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
 
-                        <td>
-                            @Html.DisplayFor(m => item.Author)
-                        </td>
+                <td>
+                    @Html.DisplayFor(m => item.Author)
+                </td>
 
-                        <td>
-                            <button class="btn btn-success btn-sm">Edit</button>
-                            <a href="#" class="btn btn-danger btn-sm text-white">Delete</a>
-                        </td>
-                    </tr>
+                @if (item.ISBN == null)
+                {
+                    <td>
+                        <p>Not Set</p>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(m => item.ISBN)
+                    </td>
+                }
+
+                <td>
+                    <button class="btn btn-success btn-sm">Edit</button>
+                    <a href="#" class="btn btn-danger btn-sm text-white">Delete</a>
+                </td>
+            </tr>
                 }
             </table>
             }
